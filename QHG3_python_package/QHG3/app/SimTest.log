@@ -1,0 +1,18 @@
+D:-----------------------------------------
+D:Starting Logfile Thu Nov 12 16:34:21 2015
+D:-----------------------------------------
+D:./SimTestOMPA called with
+D:  --events=write|pop:AltMoverFK@100
+D:  --grid=GridSGC_ieq_128.qdf
+D:  --output-dir=example_OoA_AltMoverFK_ieq_128_12.11
+D:  --pops=population_files/clsAltMoverFKPop.def:population_files/SapiensData_K60.txt
+D:  -n 170
+D:-----------------------------------------
+S:[exists] [GridSGC_ieq_128.qdf] not found
+E:Gridfile [GridSGC_ieq_128.qdf] doesn't exist
+E:[setPops] Looking at [population_files/clsAltMoverFKPop.def:population_files/SapiensData_K60.txt]
+S:[exists] [population_files/clsAltMoverFKPop.def] not found
+E:[setPops] File [population_files/clsAltMoverFKPop.def] does not exist
+E:[setPops] File [population_files/SapiensData_K60.txt] does not exist
+S:Created output directory[example_OoA_AltMoverFK_ieq_128_12.11]
+D:-------------------------------------

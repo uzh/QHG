@@ -1,0 +1,22 @@
+CLASS 109 FKPop
+SPECIES 1 ExampleMove
+SENSING 1
+
+BEGIN_PARAMS
+
+
+RandMoveProb = 0.5
+
+
+Verhulst_b0 = 0.1
+Verhulst_d0 = 0.0
+Verhulst_theta = 0.01
+Verhulst_K = 10
+
+PRIO RandMove	1
+PRIO Verhulst	2
+PRIO GetOld     3	
+
+
+END_PARAMS
+

@@ -1,0 +1,680 @@
+
+ifdef GCC
+  CC=$(GCC)
+else
+  CC=~/utils/cgcc
+endif
+
+ifndef CFLAGS
+  CFLAGS=-g -Wall
+endif
+
+UTILS=~/utils
+COMMON=../common
+QMAPS=../qmaps
+VISUAL=../visual
+EXTERNAL=../external
+GEOINFO=../geoinfo
+HEADER=../header
+TILING=../tiling
+EXTERNAL=../external
+KERNEL=../kernel
+ICOSA=../icosa
+IO=../io
+
+COMP=-fopenmp
+DOMP=-DOMP
+
+ifdef OPT
+  CFLAGS=-O3 -Wall
+endif
+ifdef PROF
+  CPROF=-pg
+  DOMP=
+else
+  CPROF=
+endif
+
+ifndef ARFL
+  ARFL=-rv
+endif
+
+COPT=-c $< -o $@ $(CADD) $(CFLAGS) $(CPROF) -I$(COMMON) -I$(ICOSA)
+
+
+TARGS=EQTiler IQApp IcoGrid IcoConv SnapCombine SnapStat SnapPairs QMapSnap
+
+
+app: $(TARGS)
+	$(if $(UTILS),cp $? $(UTILS),)
+
+
+new: clean app
+
+clean: 
+	rm -f *.o $(TARGS)
+
+
+#####
+# some general stuff
+#####
+interquat.o: interquat.cpp interquat.h trackball.h
+	$(CC) $(COPT) $(DEFS)  -I$(HEADER)
+
+trackball.o: trackball.c trackball.h 
+	g++ -c -c trackball.c -o trackball.o
+
+VRColorizer.o: VRColorizer.cpp VRColorizer.h IcoColorizer.h
+	$(CC) $(COPT) $(CADD) $(DEFS)  -I$(QMAPS) -I$(VISUAL)
+
+
+SnapColorizer.o: SnapColorizer.cpp SnapColorizer.h IQColorizer.h ProjInfo.h
+	$(CC) $(COPT) $(CADD) $(DEFS)  -I$(QMAPS) -I$(VISUAL)
+
+NodeLister.o: NodeLister.cpp NodeLister.h 
+	$(CC) $(COPT) $(DEFS)  -I$(HEADER)
+
+IcoConverter.o: IcoConverter.cpp IcoConverter.h
+	$(CC) $(COPT) $(DEFS) -I $(HEADER) -I $(GEOINFO) -I $(TILING)
+
+
+
+#####
+# IcoGrid particular
+#####
+
+
+Ico_OGL.o: Ico_OGL.cpp Ico_OGL.h IcoSurface_OGL.h
+	$(CC) $(COPT) $(CADD) $(DEFS) 
+
+Lattice_OGL.o: Lattice_OGL.cpp Lattice_OGL.h IcoSurface_OGL.h 
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(GEOINFO)
+
+EQ_OGL.o: EQ_OGL.cpp EQ_OGL.h IcoSurface_OGL.h
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(GEOINFO)
+
+
+
+GridCreator.o: GridCreator.cpp GridCreator.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) 
+
+IcoGridCreator.o: IcoGridCreator.cpp IcoGridCreator.h GridCreator.h 
+	$(CC) $(COPT) $(DEFS)
+
+RectGridCreator.o: RectGridCreator.cpp RectGridCreator.h GridCreator.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) 
+
+EQGridCreator.o: EQGridCreator.cpp EQGridCreator.h GridCreator.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) 
+
+
+#####
+# IcoGrid UI elements
+#####
+TilingsRectTable.o: TilingsRectTable.cpp TilingsRectTable.h  TilingTable.h \
+        tiles_rect_irreg.h tiles_rect_reg.h tiles_rect_var.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+TilingsIcoSphereTable.o: TilingsIcoSphereTable.cpp TilingsIcoSphereTable.h  TilingTable.h \
+        tiles_sphere_merid.h tiles_sphere_caps.h tiles_sphere_land.h
+	$(CC) $(COPT) $(DEFS)   \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+TilingsIcoLLRectTable.o: TilingsIcoLLRectTable.cpp TilingsIcoLLRectTable.h TilingTable.h \
+        tiles_sphere_llrect.h
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+TilingsIcoLandTable.o: TilingsIcoLandTable.cpp TilingsIcoLandTable.h TilingTable.h  \
+        tiles_sphere_land.h
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+TileDialog.o: TileDialog.cpp TileDialog.h IGTilingPanel.h
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IGCreatorPanel.o: IGCreatorPanel.cpp IGCreatorPanel.h \
+	IGCIcoPanel.h IGCFlatPanel.h
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IGConverterPanel.o: IGConverterPanel.cpp IGConverterPanel.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IGCIcoPanel.o: IGCIcoPanel.cpp IGCIcoPanel.h IcoScene.h
+	$(CC) $(COPT) $(DEFS) -I$(KERNEL) -I$(IO)  -fopenmp \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IGCFlatPanel.o: IGCFlatPanel.cpp IGCFlatPanel.h IcoScene.h
+	$(CC) $(COPT) $(DEFS) -I$(KERNEL) -I$(IO)  -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IGCEQPanel.o: IGCEQPanel.cpp IGCEQPanel.h IcoScene.h 
+	$(CC) $(COPT) $(DEFS) -I$(KERNEL)  -I$(IO) -I$(GEOINFO) -fopenmp \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+FileListBox.o: FileListBox.cpp FileListBox.h
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IGTilingPanel.o: IGTilingPanel.cpp IGTilingPanel.h TilingsRectTable.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+GridWin.o: GridWin.cpp GridWin.h IcoScene.h trackball.h 
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IcoScene.o: IcoScene.cpp IcoScene.h 
+	$(CC) $(COPT) $(DEFS) -I$(QMAPS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IcoModel.o: IcoModel.cpp IcoModel.h IcoView.h trackball.h  \
+	IcoSurface_OGL.h Ico_OGL.h IcoColorizer.h VRColorizer.h 
+	$(CC) $(COPT) $(DEFS) -I$(QMAPS) -I$(GEOINFO) -I$(VISUAL) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IcoView.o: IcoView.cpp IcoView.h IcoScene.h 
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+
+IcoGrid.o: IcoGrid.cpp GridWin.h 
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2`
+
+IcoGrid: IcoGrid.o GridWin.o IGCreatorPanel.o IGCIcoPanel.o IGCFlatPanel.o IGCEQPanel.o IGConverterPanel.o   \
+	IGTilingPanel.o TilingsRectTable.o TilingsIcoSphereTable.o TilingsIcoLLRectTable.o TilingsIcoLandTable.o \
+	TileDialog.o  FileListBox.o  \
+	IcoScene.o IcoView.o IcoModel.o trackball.o \
+	Ico_OGL.o Lattice_OGL.o EQ_OGL.o \
+        IcoConverter.o VRColorizer.o \
+	GridCreator.o EQGridCreator.o IcoGridCreator.o RectGridCreator.o
+	$(CC) -o IcoGrid $(CADD) $(COMP) $(CPROF) \
+	IcoGrid.o GridWin.o IGCreatorPanel.o IGCIcoPanel.o IGCFlatPanel.o IGCEQPanel.o IGConverterPanel.o \
+	IGTilingPanel.o TilingsRectTable.o TilingsIcoSphereTable.o TilingsIcoLLRectTable.o TilingsIcoLandTable.o \
+	TileDialog.o   FileListBox.o \
+	IcoScene.o IcoView.o IcoModel.o trackball.o \
+	Ico_OGL.o Lattice_OGL.o EQ_OGL.o \
+	GridCreator.o EQGridCreator.o IcoGridCreator.o RectGridCreator.o \
+        IcoConverter.o VRColorizer.o \
+	-L $(IO) -lIO \
+	-L $(ICOSA) -lIcosa \
+	-L $(KERNEL) -lKernel \
+	-L $(VISUAL) -lVisual \
+	-L $(QMAPS) -lQMap \
+	-L $(HEADER) -lHeader \
+	-L $(GEOINFO) -lGeoInfo \
+	-L $(COMMON) -lCommon \
+	-L $(EXTERNAL) -lNR \
+        -lz -lhdf5 \
+	`pkg-config --libs gtkglextmm-1.2`
+
+
+#####
+# IQApp particulars
+#####
+ProjInfo.o: ProjInfo.cpp ProjInfo.h \
+	NodeLister.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(HEADER) -I $(GEOINFO) -I $(VISUAL) -I $(QMAPS)
+
+IQSurface_OGL.o: IQSurface_OGL.cpp IQSurface_OGL.h IQColorizer.h
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(GEOINFO)
+
+IQIco_OGL.o: IQIco_OGL.cpp IQIco_OGL.h IQSurface_OGL.h 
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(GEOINFO)
+
+IQFlat_OGL.o: IQFlat_OGL.cpp IQFlat_OGL.h IQSurface_OGL.h
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(GEOINFO)
+
+IQEQIco_OGL.o: IQEQIco_OGL.cpp IQEQIco_OGL.h IQSurface_OGL.h
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(GEOINFO)
+
+SnapValueProvider.o: SnapValueProvider.cpp SnapValueProvider.h ValueProvider.h
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(QMAPS) -I$(HEADER) -I${ICOSA}
+
+IQOverlay.o: IQOverlay.cpp IQOverlay.h
+	$(CC) $(COPT) $(DEFS)
+
+SurfaceManager.o: SurfaceManager.cpp SurfaceManager.h IQSurface_OGL.h \
+	IQIco_OGL.h IQFlat_OGL.h
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(IO)
+
+QDFNodes.o: QDFNodes.cpp QDFNodes.h 
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(IO)
+
+QDFArraySniffer.o: QDFArraySniffer.cpp QDFArraySniffer.h 
+	$(CC) $(COPT) $(DEFS) -I$(IO)
+
+QDFValueProvider.o: QDFValueProvider.cpp QDFValueProvider.h ValueProvider.h QDFNodes.h
+	$(CC) $(COPT) $(DEFS) -I$(IO) 
+
+
+#####
+# IQApp UI elements
+#####
+IQWin.o: IQWin.cpp IQWin.h IQScene.h \
+         ProjInfo.h notification_codes.h init.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) -I$(VISUAL) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQScene.o: IQScene.cpp IQScene.h  IQView.h IQModel.h \
+         ProjInfo.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQModel.o: IQModel.cpp IQModel.h IQView.h trackball.h SurfaceManager.h NodeLister.h \
+	 ProjInfo.h notification_codes.h init.h
+	$(CC) $(COPT) $(DEFS) -I$(QMAPS) -I$(VISUAL) -I$(HEADER) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQView.o: IQView.cpp IQView.h IQScene.h trackball.h
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQDataPanel.o: IQDataPanel.cpp IQDataPanel.h IQModel.h SurfaceManager.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(VISUAL) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQQDFPanel.o: IQQDFPanel.cpp IQQDFPanel.h IQModel.h SurfaceManager.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(VISUAL) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQLookUpPanel.o: IQLookUpPanel.cpp IQLookUpPanel.h \
+         ProjInfo.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(VISUAL) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQProjPanel.o: IQProjPanel.cpp IQProjPanel.h init.h \
+         IQImageViewer.h ProjInfo.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQGradientPanel.o: IQGradientPanel.cpp IQGradientPanel.h init.h \
+         IQImageViewer.h ProjInfo.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(HEADER) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQAniPanel.o: IQAniPanel.cpp IQAniPanel.h IQAnimator.h \
+         notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQEffectPanel.o: IQEffectPanel.cpp IQEffectPanel.h 
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQAnimator.o: IQAnimator.cpp IQAnimator.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQImageViewer.o: IQImageViewer.cpp IQImageViewer.h \
+         ProjInfo.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(GEOINFO) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+IQGradientFinder.o: IQGradientFinder.cpp IQGradientFinder.h \
+         ProjInfo.h notification_codes.h
+	$(CC) $(COPT) $(DEFS) -I$(HEADER)
+
+
+IQApp.o: IQApp.cpp IQWin.h
+	$(CC) $(COPT) $(DEFS) \
+	`pkg-config --cflags gtkglextmm-1.2` 
+
+
+IQApp: IQApp.o IQWin.o IQScene.o IQView.o IQModel.o trackball.o IQOverlay.o \
+	IQDataPanel.o IQQDFPanel.o \
+	IQLookUpPanel.o IQProjPanel.o ProjInfo.o IQImageViewer.o \
+	IQGradientPanel.o IQGradientFinder.o \
+	IQAniPanel.o IQEffectPanel.o \
+	IQAnimator.o interquat.o \
+	SurfaceManager.o IQSurface_OGL.o IQIco_OGL.o IQFlat_OGL.o IQEQIco_OGL.o SnapValueProvider.o SnapColorizer.o \
+	QDFArraySniffer.o QDFNodes.o QDFValueProvider.o 
+	$(CC) -o IQApp $(CADD) $(COMP) $(CPROF) \
+	IQApp.o IQWin.o IQScene.o IQView.o IQModel.o trackball.o  IQOverlay.o \
+	IQDataPanel.o IQQDFPanel.o \
+	IQLookUpPanel.o IQProjPanel.o ProjInfo.o IQImageViewer.o \
+	IQGradientPanel.o IQGradientFinder.o \
+	IQAniPanel.o IQEffectPanel.o \
+	IQAnimator.o interquat.o \
+	SurfaceManager.o IQSurface_OGL.o IQIco_OGL.o IQFlat_OGL.o IQEQIco_OGL.o SnapValueProvider.o SnapColorizer.o  \
+	QDFArraySniffer.o QDFNodes.o QDFValueProvider.o \
+	-L $(ICOSA)    -lIcosa \
+	-L $(VISUAL)   -lVisual \
+	-L $(QMAPS)    -lQMap \
+	-L $(HEADER)   -lHeader \
+        -L $(GEOINFO)  -lGeoInfo  \
+	-L $(COMMON)   -lCommon \
+	-L $(IO)       -lIO \
+	-L $(EXTERNAL) -lNR \
+	-lz -lhdf5 \
+	`pkg-config --libs gtkglextmm-1.2`
+
+#####
+# IcoConv
+#####
+RectLoc.o: RectLoc.cpp RectLoc.h
+	$(CC) $(COPT) $(DEFS) -I$(ICOSA)  -I$(GEOINFO)
+
+IcoConv.o: IcoConv.cpp  IcoConverter.h 
+	$(CC) $(COPT) $(DEFS) -I $(HEADER) -I $(GEOINFO) -I $(TILING)
+
+IcoConv:  IcoConv.o  IcoConverter.o RectLoc.o
+	$(CC) $(COMP)  -o IcoConv \
+	IcoConv.o  IcoConverter.o RectLoc.o  \
+	-L $(ICOSA) -lIcosa \
+	-L $(HEADER) -lHeader \
+	-L $(GEOINFO) -lGeoInfo \
+	-L $(COMMON) -lCommon \
+	-lz
+
+#####
+# SnapCombine
+#####
+SnapCombine.o: SnapCombine.cpp NodeLister.h
+	$(CC) $(COPT) $(DEFS) -I$(HEADER)
+
+
+SnapCombine: SnapCombine.o NodeLister.o 
+	$(CC) -o SnapCombine  $(CADD) $(COMP) $(CPROF) \
+	SnapCombine.o NodeLister.o  \
+	-L $(HEADER) -lHeader \
+	-L $(COMMON) -lCommon \
+	-lz
+
+
+#####
+# SnapPairs
+#####
+SnapPairs.o: SnapPairs.cpp NodeLister.h
+	$(CC) $(COPT) $(DEFS) -I$(HEADER)
+
+
+SnapPairs: SnapPairs.o NodeLister.o 
+	$(CC) -o SnapPairs  $(CADD) $(COMP) $(CPROF) \
+	SnapPairs.o NodeLister.o \
+	-L $(ICOSA) -lIcosa \
+	-L $(HEADER) -lHeader \
+	-L $(COMMON) -lCommon \
+	-lz
+
+
+#####
+# SnapStat
+#####
+SnapStat.o: SnapStat.cpp NodeLister.h
+	$(CC) $(COPT) $(DEFS)   -I$(HEADER) -I$(ICOSA)
+
+
+SnapStat: SnapStat.o NodeLister.o 
+	$(CC) -o SnapStat  $(CADD) $(COMP) $(CPROF) \
+	SnapStat.o NodeLister.o  \
+	-L $(HEADER) -lHeader \
+	-L $(COMMON) -lCommon \
+	-lz
+
+
+#####
+# SnapPairs
+#####
+SnapWave.o: SnapWave.cpp NodeLister.h 
+	$(CC) $(COPT) $(DEFS) -I$(HEADER)
+
+SnapWave: SnapWave.o NodeLister.o
+	$(CC) -o SnapWave  $(CADD) $(COMP) $(CPROF) \
+	SnapWave.o NodeLister.o \
+	-L $(HEADER) -lHeader \
+	-L $(COMMON) -lCommon \
+	-lz -fopenmp
+
+
+#####
+# QMapSnap
+#####
+QMapSnap.o:QMapSnap.cpp
+	$(CC) $(COPT) $(CADD) $(DEFS) -I$(HEADER) -I$(QMAPS)
+
+QMapSnap:QMapSnap.o 
+	$(CC) -o QMapSnap $(CADD) $(COMP) $(CPROF) \
+	QMapSnap.o \
+	-L $(ICOSA) -lIcosa \
+	-L $(QMAPS) -lQMap \
+        -L $(GEOINFO) -lGeoInfo  \
+	-L $(HEADER) -lHeader \
+	-L $(COMMON) -lCommon \
+	-L $(EXTERNAL) -lNR \
+	-lz
+
+#####
+# SnapQuatProjector
+#####
+SnapQuatProjector.o: SnapQuatProjector.cpp SnapQuatProjector.h ProjInfo.h Icosahedron.h 
+	$(CC) $(COPT) $(DEFS)   -I$(GEOINFO)  -I $(VISUAL) \
+	`pkg-config --cflags gtkglextmm-1.2`	
+
+SQPTest.o: SQPTest.cpp SnapQuatProjector.h Icosahedron.h ProjInfo.h
+	$(CC) $(COPT) $(DEFS)   -I$(HEADER) \
+	`pkg-config --cflags gtkglextmm-1.2`	
+
+
+SQPTest: SQPTest.o SnapQuatProjector.o ProjInfo.o interquat.o trackball.o \
+	Face.o IcoFace.o QuadFace.o Icosahedron.o IcoHeader.o VertexLinkage.o symbuf.o NodeLister.o
+	$(CC) -o SQPTest  $(CADD) $(COMP) $(CPROF) \
+	SQPTest.o SnapQuatProjector.o ProjInfo.o interquat.o trackball.o \
+	Face.o IcoFace.o QuadFace.o Icosahedron.o IcoHeader.o VertexLinkage.o symbuf.o NodeLister.o \
+	$(COMMON)/LineReader.o $(COMMON)/Observable.o $(COMMON)/Vec3D.o \
+        $(COMMON)/strutils.o $(COMMON)/BufWriter.o $(COMMON)/BufReader.o \
+        $(COMMON)/Interpolator.o $(COMMON)/BinSearch.o $(COMMON)/DescReader.o \
+        $(HEADER)/HeaderBase.o $(HEADER)/SnapHeader.o $(HEADER)/PopHeader.o \
+	-L $(VISUAL) -lVisual \
+        -L $(GEOINFO) -lGeoInfo  \
+	-L $(QMAPS) -lQMap \
+	-L $(EXTERNAL) -lNR \
+	-lz \
+	`pkg-config --libs gtkglextmm-1.2`
+
+#####
+# SmooothSequence
+#####
+SmoothSequence.o: SmoothSequence.cpp SnapQuatProjector.h Icosahedron.h ProjInfo.h QSpline.h
+	$(CC) $(COPT) $(DEFS)   -I$(HEADER) \
+	`pkg-config --cflags gtkglextmm-1.2`	
+
+
+SmoothSequence: SmoothSequence.o SnapQuatProjector.o ProjInfo.o interquat.o trackball.o QSpline.o \
+	Face.o IcoFace.o QuadFace.o Icosahedron.o IcoHeader.o VertexLinkage.o symbuf.o NodeLister.o
+	$(CC) -o SmoothSequence  $(CADD) $(COMP) $(CPROF) \
+	SmoothSequence.o SnapQuatProjector.o ProjInfo.o interquat.o trackball.o QSpline.o \
+	Face.o IcoFace.o QuadFace.o Icosahedron.o IcoHeader.o VertexLinkage.o symbuf.o NodeLister.o \
+	$(COMMON)/LineReader.o $(COMMON)/Observable.o $(COMMON)/Vec3D.o $(COMMON)/Quat.o  $(COMMON)/geomutils.o  \
+        $(COMMON)/strutils.o $(COMMON)/BufWriter.o $(COMMON)/BufReader.o \
+        $(COMMON)/Interpolator.o $(COMMON)/BinSearch.o $(COMMON)/DescReader.o \
+        $(HEADER)/HeaderBase.o $(HEADER)/SnapHeader.o $(HEADER)/PopHeader.o \
+	-L $(VISUAL) -lVisual \
+        -L $(GEOINFO) -lGeoInfo  \
+	-L $(QMAPS) -lQMap \
+	-L $(EXTERNAL) -lNR \
+	-lz \
+	`pkg-config --libs gtkglextmm-1.2`
+
+#####
+# IGN stuff
+#####
+IGNWriteTest.o:IGNWriteTest.cpp IcoGridNodes.h IcoGridCreator.h TrivialSplitter.h
+	$(CC) $(COPT) $(CADD) $(DEFS)  -I$(HEADER)  -I$(EXTERNAL) -I$(VISUAL)
+
+IGNWriteTest: IGNWriteTest.o IcoGridCreator.o IcoGridNodes.o TrivialSplitter.o FullRegion.o RegionSplitter.o Region.o \
+	IcoNode.o IcoHeader.o VertexLinkage.o Icosahedron.o \
+	GridCreator.o GridZones.o IcoFace.o QuadFace.o IcoSpiral.o symbuf.o 
+	$(CC) $(CADD) $(COMP) -o IGNWriteTest IGNWriteTest.o \
+	IcoGridCreator.o IcoGridNodes.o TrivialSplitter.o FullRegion.o RegionSplitter.o Region.o \
+	IcoNode.o IcoHeader.o VertexLinkage.o Icosahedron.o \
+	GridCreator.o GridZones.o IcoFace.o QuadFace.o IcoSpiral.o symbuf.o \
+	 $(COMMON)/Vec3D.o $(COMMON)/Quat.o $(COMMON)/BufReader.o  $(COMMON)/strutils.o $(COMMON)/geomutils.o \
+         $(COMMON)/BufWriter.o 
+
+IGNDisplay.o:IGNDisplay.cpp IcoGridNodes.h
+	$(CC) $(COPT) $(CADD) $(DEFS)  -I$(HEADER)  -I$(EXTERNAL) -I$(VISUAL)
+
+IGNDisplay: IGNDisplay.o IcoGridNodes.o \
+	IcoNode.o IcoHeader.o VertexLinkage.o Icosahedron.o \
+	GridCreator.o GridZones.o IcoFace.o QuadFace.o IcoSpiral.o symbuf.o 
+	$(CC) $(CADD) $(COMP) -o IGNDisplay IGNDisplay.o \
+	IcoGridNodes.o \
+	IcoNode.o IcoHeader.o VertexLinkage.o Icosahedron.o \
+	GridCreator.o GridZones.o IcoFace.o QuadFace.o IcoSpiral.o symbuf.o \
+	 $(COMMON)/Vec3D.o $(COMMON)/Quat.o $(COMMON)/BufReader.o  $(COMMON)/strutils.o $(COMMON)/geomutils.o \
+         $(COMMON)/BufWriter.o 
+
+
+#####
+# QSpline stuff
+#####
+QSpline.o: QSpline.cpp QSpline.h interquat.h trackball.h
+	$(CC) $(COPT) $(DEFS)  -I$(HEADER)
+
+QSTest.o: QSTest.cpp QSpline.h interquat.h trackball.h
+	$(CC) $(COPT) $(DEFS)  -I$(HEADER)
+
+QSTest: QSTest.o QSpline.o interquat.o trackball.o
+	$(CC) -o QSTest \
+	QSTest.o QSpline.o interquat.o trackball.o \
+	$(COMMON)/LineReader.o $(COMMON)/strutils.o \
+	-lz
+
+
+
+TraceQSpline.o: TraceQSpline.cpp Icosahedron.h QSpline.h interquat.h
+	$(CC) $(COPT) $(DEFS)  
+
+
+TraceQSpline: TraceQSpline.o interquat.o QSpline.o trackball.o \
+	Face.o IcoFace.o QuadFace.o Icosahedron.o IcoHeader.o VertexLinkage.o symbuf.o NodeLister.o
+	$(CC) -o TraceQSpline  $(CADD) $(COMP) $(CPROF) \
+	TraceQSpline.o interquat.o QSpline.o trackball.o \
+	Face.o IcoFace.o QuadFace.o Icosahedron.o IcoHeader.o VertexLinkage.o symbuf.o NodeLister.o \
+	$(COMMON)/LineReader.o $(COMMON)/Observable.o $(COMMON)/Vec3D.o \
+        $(COMMON)/strutils.o $(COMMON)/BufWriter.o $(COMMON)/BufReader.o \
+        $(COMMON)/Interpolator.o $(COMMON)/BinSearch.o $(COMMON)/DescReader.o \
+	$(HEADER)/HeaderBase.o $(HEADER)/SnapHeader.o $(HEADER)/PopHeader.o \
+	-L $(VISUAL) -lVisual \
+	-L $(EXTERNAL) -lNR \
+	-lz \
+	`pkg-config --libs gtkglextmm-1.2`
+
+
+#####
+# Ico2Table
+#####
+Ico2Table.o: Ico2Table.cpp Icosahedron.h NodeLister.h 
+	$(CC) $(COPT) $(DEFS)  
+
+Ico2Table:  Ico2Table.o Icosahedron.o IcoNode.o \
+	VertexLinkage.o IcoFace.o QuadFace.o symbuf.o IcoHeader.o NodeLister.o
+	$(CC) $(COMP)  -o Ico2Table \
+	Ico2Table.o Icosahedron.o IcoNode.o VertexLinkage.o  \
+	IcoFace.o QuadFace.o symbuf.o IcoHeader.o NodeLister.o \
+	$(COMMON)/LineReader.o $(COMMON)/DescReader.o \
+	$(COMMON)/Vec3D.o  $(COMMON)/Quat.o  $(COMMON)/geomutils.o $(COMMON)/strutils.o \
+	$(COMMON)/BufWriter.o $(COMMON)/BufReader.o \
+        $(COMMON)/ParamReader.o	\
+	$(HEADER)/HeaderBase.o $(HEADER)/SnapHeader.o  $(HEADER)/PopHeader.o \
+	-lz
+
+#####
+# Ico2PLY
+#####
+Ico2PLY.o: Ico2PLY.cpp 	
+	$(CC) $(COPT) $(CADD) $(DEFS)  -I$(HEADER)  -I$(EXTERNAL) -I$(VISUAL)
+
+Ico2PLY: Ico2PLY.o Icosahedron.o IcoFace.o QuadFace.o IcoHeader.o	\
+        VertexLinkage.o symbuf.o NodeLister.o 
+	$(CC) $(CADD) $(COMP) -o Ico2PLY Ico2PLY.o \
+	$(COMMON)/strutils.o $(COMMON)/ParamReader.o \
+	$(COMMON)/LineReader.o $(COMMON)/DescReader.o \
+        $(COMMON)/Vec3D.o $(COMMON)/BufWriter.o $(COMMON)/BufReader.o \
+	$(HEADER)/HeaderBase.o 	$(HEADER)/SnapHeader.o	$(HEADER)/PopHeader.o \
+	Icosahedron.o IcoFace.o QuadFace.o IcoHeader.o	\
+        VertexLinkage.o symbuf.o NodeLister.o \
+	$(VISUAL)/LookUp.o \
+	$(EXTERNAL)/plyfile.o \
+        -L $(VISUAL) -lVisual -lz	
+
+#####
+# IRRTest
+#####
+IRRTest.o: IRRTest.cpp IrregRegion.h IcoNode.h
+	$(CC) $(COPT) $(DEFS) $(COMP) 
+
+IRRTest: IRRTest.o IrregRegion.o IcoNode.o
+	$(CC) -o IRRTest $(CADD) $(COMP) $(CPROF) \
+	IRRTest.o IrregRegion.o IcoNode.o
+
+#####
+# RITest
+#####
+RITest.o:RITest.cpp  EQTriangle.h EQsahedron.h
+	$(CC) $(COPT) $(DEFS) $(COMP)  -I$(QMAPS)
+
+RITest:RITest.o Tegmark.o EQTriangle.o EQsahedron.o IcoFace.o VertexLinkage.o FaceChecker.o
+	$(CC) -o RITest $(CADD) $(COMP) $(CPROF) \
+	RITest.o Tegmark.o EQTriangle.o EQsahedron.o \
+	IcoFace.o VertexLinkage.o FaceChecker.o \
+	$(COMMON)/Vec3D.o $(COMMON)/Quat.o \
+	$(COMMON)/strutils.o $(COMMON)/LineReader.o \
+	$(COMMON)/Interpolator.o $(COMMON)/BinSearch.o \
+	-L $(QMAPS) -lQMap \
+	-L $(EXTERNAL) -lNR \
+	-lz
+
+#####
+# RSTest
+#####
+RSTest.o: RSTest.cpp Region.h RegionSplitter.h RectRegion.h RectSplitter.h icoutil.h
+	$(CC) $(COPT) $(CADD) $(DEFS)  -I$(QMAPS) -I$(VISUAL)
+
+
+RSTest: RSTest.o RectSplitter.o RegionSplitter.o RectRegion.o \
+	Region.o FullRegion.o TrivialSplitter.o \
+	$(COMMON)/smallprimes.o $(COMMON)/strutils.o 
+	$(CC) $(CADD) $(COMP) -o RSTest RSTest.o \
+	RectSplitter.o RegionSplitter.o RectRegion.o \
+	Region.o FullRegion.o TrivialSplitter.o \
+	$(COMMON)/smallprimes.o $(COMMON)/strutils.o 
+
+
+#####
+# QASTest
+#####
+QASTest.o: QASTest.cpp QDFArraySniffer.h QDFValueProvider.h ValueProvider.h
+	$(CC) $(COPT) $(DEFS) -I$(IO)
+
+QASTest: QASTest.o QDFArraySniffer.o QDFValueProvider.o QDFNodes.o
+	$(CC) -o QASTest \
+        QASTest.o QDFArraySniffer.o QDFValueProvider.o QDFNodes.o \
+	-L$(IO)       -lIO \
+	-L$(COMMON)   -lCommon \
+        -lhdf5 -lz
+
+EQTiler.o: EQTiler.cpp EQGridCreator.h GridCreator.h
+	$(CC) $(COPT) $(DEFS) -I$(COMMON) -I$(KERNEL) -I$(ICOSA) -I$(IO)
+
+
+EQTiler: EQTiler.o EQGridCreator.o 
+	$(CC) -o EQTiler $(CADD) $(COMP) \
+	EQTiler.o  EQGridCreator.o \
+	-L$(ICOSA) -lIcosa \
+	-L$(KERNEL) -lKernel \
+	-L$(QMAPS) -lQMap \
+	-L$(HEADER) -lHeader \
+	-L$(ICOSA) -lIcosa \
+	-L$(IO) -lIO \
+	-L$(COMMON) -lCommon \
+	-lhdf5 -lz
+
+
+

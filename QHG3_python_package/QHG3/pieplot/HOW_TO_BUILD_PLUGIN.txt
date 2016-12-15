@@ -1,0 +1,29 @@
+
+Just run the script 
+
+./BUILD_PLUGIN.sh
+
+and it should work. 
+
+More in detail:
+Assuming that
+  $XML2CMAKE_BIN
+is set to visit's 'xml2cmake' (tghe one in visit's install directory), e.g.
+  /opt/visit/bin/xml2cmake
+
+and
+  $CMAKE_VISIT  
+is set to the cmake used to build visit, e.g.
+  /opt/visit-sources/cmake-2.8.10.2/bin/cmake
+
+then these are the steps to build the QDF plugin:
+
+1) ${XML2CMAKE_BIN} -clobber Pie.xml
+
+2) ${CMAKE_VISIT} .
+
+3) make clean (if you want to start from scratch)
+
+4) make
+
+

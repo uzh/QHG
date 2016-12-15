@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/natalie/simulations/svn_qhg3/qhg3_25.09.15/QHG3/VisIt_plugin/QDFPluginInfo.C
+QDFPluginInfo.h
+-
+visit-config.h
+-
+
+/opt/visit2.7.3/2.7.3/linux-x86_64/include/visit/common/plugin/DatabasePluginInfo.h
+plugin_exports.h
+-
+stdio.h
+-
+string
+-
+vector
+-
+
+/opt/visit2.7.3/2.7.3/linux-x86_64/include/visit/common/plugin/database_plugin_exports.h
+
+/opt/visit2.7.3/2.7.3/linux-x86_64/include/visit/common/plugin/plugin_exports.h
+
+/opt/visit2.7.3/2.7.3/linux-x86_64/include/visit/include/visit-config.h
+
+QDFPluginInfo.h
+DatabasePluginInfo.h
+-
+database_plugin_exports.h
+-
+

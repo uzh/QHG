@@ -1,0 +1,41 @@
+
+trap 'exit' EXIT INT TERM
+printf '1 2 \n'
+
+
+printf $HOME
+
+
+#kystep=2
+#for i in $(awk -v KY=$kystep 'BEGIN {for (h=70; h>22; h-=KY) {print h}}'); do
+#    for j in $(awk -v KY=$kystep 'BEGIN {for (h=0;h<KY;h+=0.5) {print h} }'); do
+#		printf '1 \n'
+#        step=`printf %06i $(awk -v J=$j -v I=$i 'BEGIN {print (70-(I-J))*1000;}')`
+#        $HOME/tools/LinkSGCqdf.py output__pop-AltMoverFK_M_${step}.qdf ../../world_maps/lr/world_${i}kya.qdf
+#    done
+#done
+
+#kystep=1
+#for i in $(awk -v KY=$kystep 'BEGIN {for (h=22; h>16; h-=KY) {print h} }'); do
+#    for j in $(awk -v KY=$kystep 'BEGIN {for (h=0;h<KY;h+=0.5) {print h} }'); do
+#        step=`printf %06i $(awk -v J=$j -v I=$i 'BEGIN {print (70-(I-J))*1000;}')`
+#        printf '2 \n'
+#        $HOME/tools/LinkSGCqdf.py output__pop--AltMoverFK_M_${step}.qdf ../../world_maps/lr/world_${i}kya.qdf
+#    done
+#done
+
+
+kystep=0.5
+for i in $(awk -v KY=$kystep 'BEGIN {for (h=15; h>=0; h-=KY) {print h}}'); do
+    for j in $(awk -v KY=$kystep 'BEGIN {for (h=0;h<KY;h+=0.5) {print h} }'); do
+        step=`printf %06i $(awk -v J=$j -v I=$i 'BEGIN {print (15-(I-J))*1000/5;}')`
+	#step=`printf %06i $(awk -v J=$j -v I=$i 'BEGIN {print (15-(I-J))*1000;}')`
+		printf "Step: %s; value i: %s\n" "$step" "$i" 
+                #printf  "$step" '\n'       
+		../LinkSGCqdf.py output__pop-AltMoverFK_M_${step}.qdf ../world_maps/lr/world_${i}kya.qdf
+    done
+done
+
+
+
+

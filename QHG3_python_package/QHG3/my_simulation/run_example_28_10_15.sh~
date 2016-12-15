@@ -1,0 +1,56 @@
+#!/bin/bash
+
+./SimTestOMPA -n 200 --grid=GridSG_ieq_128.qdf  --pops=population_files/clsFKPop.def:population_files/SimpleData.txt  --events='write|pop:ExampleMove@10' --output-dir=example21.12_2dim_ieq_128_K50
+
+# linking grid to pop qdf
+./LinkSGCqdf.py output__pop-Test__000000.qdf GridSGC_ieq_128.qdf
+.././LinkSGCqdf.py output__pop-Sapiens__000100.qdf ../GridSGC_ieq_128.qdf
+
+
+# run
+./SimTestOMPA -n 100 --grid=GridSG_ieq_128.qdf  --pops=population_files/clsFKPop.def:population_files/SimpleData_StartCanada.txt  --events='write|pop:ExampleMove@10' --output-dir=example04.11_2dim_ieq_128_K50
+
+# altitude preference
+AtlPreference = -0.1 0 0 1 2500 1 2500.1 0
+
+# try to run a simulation for OoA with clsLandDweller.def
+
+./SimTestOMPA -n 170 --grid=GridSGC_ieq_128.qdf  --pops=population_files/clsLandDweller.def:population_files/SapiensData_K60.txt  --events='write|pop:Sapiens@100' --output-dir=example_OoA_LandDweller_ieq_128_09.11
+
+genes_lr_K20_Klin2000m_fullcross-1.def
+
+./SimTestOMPA -n 170 --grid=GridSGC_ieq_128.qdf  --pops=population_files/genes_lr_K20_Klin2000m_fullcross-1.def:population_files/SimpleData_StartEastAfrica.txt  --events='write|pop:Sapiens@100' --output-dir=example_OoA_LandDweller_ieq_128_06.11
+
+# previous data on kraken
+/data/sims/ooA/geo/IC
+
+
+# run AltMoverFKPop
+./SimTestOMPA -n 170 --grid=GridSGC_ieq_128.qdf  --pops=population_files/clsAltMoverFKPop.def:population_files/SapiensData_K60.txt  --events='write|pop:AltMoverFK@100' --output-dir=example_OoA_AltMoverFK_ieq_128_12.11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

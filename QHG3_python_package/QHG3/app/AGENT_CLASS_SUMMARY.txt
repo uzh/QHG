@@ -1,0 +1,27 @@
+### POPULATIONS SUMMARY ###
+CLASS AltDensGenMoverPop : ClassID 101
+CLASS AltDensMoverPop : ClassID 102
+CLASS AltMoverFKPop : ClassID 103
+CLASS AltMoverPop : ClassID 104
+CLASS Anc4AltMoverPop : ClassID 105
+CLASS AncCapacityPop : ClassID 106
+CLASS AncestorAltMoverPop : ClassID 107
+CLASS CoastDwellerPop : ClassID 108
+CLASS DirTestPop : ClassID 109
+CLASS ExamplePop : ClassID 110
+CLASS FK1DPop : ClassID 111
+CLASS FKPop : ClassID 112
+CLASS GeneticMoverPop : ClassID 113
+CLASS GenLandDwellerConfPop : ClassID 114
+CLASS GenLandDwellerPop : ClassID 115
+CLASS LandDwellerPop : ClassID 116
+CLASS LVPredPop : ClassID 117
+CLASS LVPreyPop : ClassID 118
+CLASS PDAltPredPop : ClassID 119
+CLASS PDAltPreyPop : ClassID 120
+CLASS PDPredPop : ClassID 121
+CLASS PDPreyPop : ClassID 122
+CLASS SimplePredPop : ClassID 123
+CLASS SimplePreyPop : ClassID 124
+CLASS VegDwellerPop : ClassID 125
+

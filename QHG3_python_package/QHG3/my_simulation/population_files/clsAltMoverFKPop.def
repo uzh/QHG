@@ -1,0 +1,20 @@
+CLASS AltMoverFKPop
+SPECIES 1 AltMoverFK
+SENSING 1
+
+BEGIN_PARAMS
+
+WeightedMoveProb = 0.2
+AltMovePref = -0.1 0 0 1 2500 1 2500.1 0
+
+Verhulst_b0 = 0.06
+Verhulst_d0 = 0.00
+Verhulst_theta = 0.03
+Verhulst_K = 307
+
+PRIO SingleEvaluator    1
+PRIO WeightedMove       2
+PRIO Verhulst           3
+	
+END_PARAMS
+

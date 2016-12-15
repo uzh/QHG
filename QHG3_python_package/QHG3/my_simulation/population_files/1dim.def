@@ -1,0 +1,20 @@
+CLASS 108 FK1DPop
+SPECIES 1 Dummy
+SENSING 1
+
+BEGIN_PARAMS
+
+RandMove1DProb = 0.4
+
+Verhulst_b0 = 0.1
+Verhulst_d0 = 0.0
+Verhulst_theta = 0.01
+Verhulst_K = 10
+
+PRIO RandMove1D	1
+PRIO Verhulst	2
+PRIO GetOld     3	 
+
+
+END_PARAMS
+

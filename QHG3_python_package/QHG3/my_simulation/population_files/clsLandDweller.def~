@@ -1,0 +1,28 @@
+CLASS LandDwellerPop 
+SPECIES 1 Sapiens
+SENSING 1
+
+BEGIN_PARAMS
+
+WeightedMoveProb = 0.2
+AltMovePref = -0.1 0 0 1 2000 0
+
+AltCapPref = -0.1 0 0 10 10000 10
+AltWeight = 1
+
+TempCapPref = -10000 0 10000 0
+TempWeight = 0
+
+Verhulst_b0 = 0.06
+Verhulst_d0 = 0.00
+Verhulst_theta = 0.005
+
+PRIO RandomPair         1
+PRIO MultiEvaluator     1
+PRIO SingleEvaluator    1
+PRIO VerhulstVarK       2
+PRIO WeightedMove       3
+PRIO GetOld             4
+
+END_PARAMS
+

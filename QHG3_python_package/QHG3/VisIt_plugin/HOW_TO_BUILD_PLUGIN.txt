@@ -1,0 +1,26 @@
+
+Just run the script 
+
+./BUILD_PLUGIN.sh
+
+and it should work. 
+
+More in detail:
+
+If your visit install directory (the one where you have the "visit"
+executable. e.g. /usr/local/visit/bin) is VISIT_DIR, then these are
+the steps to build the QDF plugin:
+
+1) cd QHGsources
+
+2) make
+
+3) cd ..
+
+4) ${VISIT_DIR}/xml2cmake qdf.xml
+
+5) cmake .
+
+6) make
+
+All shall be well and all manner of thing shall be well.

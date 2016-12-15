@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+  <Plugin name="QDF" type="database" label="QHG file format" version="1.0" enabled="true" mdspecificcode="false" engspecificcode="false" onlyengine="false" noengine="false" dbtype="STSD" haswriter="false" hasoptions="false" filePatternsStrict="false" opensWholeDirectory="false">
+    <CXXFLAGS>
+      -IQHGsources 
+    </CXXFLAGS>
+    <LDFLAGS>
+      -LQHGsources 
+    </LDFLAGS>
+    <LIBS>
+      QDFUtils hdf5
+    </LIBS>
+    <FilePatterns>
+      *.qdf *.QDF
+    </FilePatterns>
+    <Attribute name="" purpose="" persistent="true" keyframe="true" exportAPI="" exportInclude="">
+    </Attribute>
+  </Plugin>
