@@ -1,0 +1,28 @@
+# POP INFO: Species name (Num substeps, sensing distance)
+CLASS GeneticPop
+SPECIES 1554 Genie
+SENSING 1
+
+BEGIN_PARAMS
+
+# for MoverPop
+MAX_MASS  = 8
+B_PROB_0  = 1.0
+#D_PROB_0  = 0.1
+#TURNOVER  = 0.05
+D_PROB_0  = 0.15
+TURNOVER  = 0.1
+MOVE_THRESH = 0.1
+MOVE_PROB   = 0.9
+
+# for GeneticPop
+GENOME_SIZE   = 5
+MUTATION_RATE = 0.1
+NUM_CROSSOVER = 2
+
+# priorities
+PRIO BIRTH 2
+PRIO DEATH 1
+PRIO MOVE  3
+
+END_PARAMS

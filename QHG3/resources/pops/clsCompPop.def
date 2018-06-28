@@ -1,0 +1,24 @@
+# POP INFO: Species name (Num substeps, sensing distance)
+CLASS  CompPop
+SPECIES 1154 CompClimber
+SENSING 1
+
+BEGIN_PARAMS
+
+# for MoverPop
+MAX_MASS  = 5
+B_PROB_0  = 1.0
+D_PROB_0  = 0.2
+TURNOVER  = 0.05
+MOVE_THRESH = 0.01
+MOVE_PROB   = 0.99
+
+# for AltMoverPop
+TOPO_INFO = -0.1 -1000 0.1 1 1500 20 3000 1 4000 -1
+
+# priorities
+PRIO BIRTH 2
+PRIO DEATH 1
+PRIO MOVE  3
+
+END_PARAMS

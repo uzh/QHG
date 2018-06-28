@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+  <Plugin name="Pie" type="plot" label="Pie" version="1.0" enabled="true" mdspecificcode="false" engspecificcode="false" onlyengine="false" noengine="false" vartype="vector,tensor,symmetrictensor,array" iconFile="PiePlot.xpm">
+    <CXXFLAGS>
+      ${GLEW_INCLUDE_DIR}
+    </CXXFLAGS>
+    <Files components="V">
+      avtPieFilter.C
+      avtPiePlot.C
+      avtPieRenderer.C
+      PieManager.cpp
+      PieCreator.cpp
+      Vec3D.cpp
+      Quat.cpp
+    </Files>
+    <Files components="E">
+      avtPieFilter.C
+      avtPiePlot.C
+      avtPieRenderer.C
+      PieManager.cpp
+      PieCreator.cpp
+      Vec3D.cpp
+      Quat.cpp
+    </Files>
+    <Attribute name="PieAttributes" purpose="Attributes for the PiePlot plot." persistent="true" keyframe="true" exportAPI="" exportInclude="" codefile="PieAttributes.code">
+      <Enum name="GlyphStyle">
+        STYLE_PIE
+        STYLE_STAR
+        STYLE_BARS
+      </Enum>
+      <Field name="iGlyphStyle" label="Glyph Style" type="enum" subtype="GlyphStyle">
+        STYLE_PIE
+      </Field>
+      <Field name="fScale1" label="scale 1" type="float">
+        1.000000
+      </Field>
+      <Field name="fScale2" label="scale 2" type="float">
+        1.000000
+      </Field>
+      <Field name="bFramed" label="frame" type="bool">
+        true
+      </Field>
+      <Function name="ChangesRequireRecalculation" user="true" member="true">
+      </Function>
+    </Attribute>
+  </Plugin>

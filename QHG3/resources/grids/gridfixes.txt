@@ -1,0 +1,60 @@
+Fixes for GridSGC_20k_ieq_256.qdf IEQ 256 geography
++++++++++++++++++++++++++++++++++++++++++++++++++++
+There are some separations to make and 
+some bridges to be built
+
+Europe (separate from Africa)
+=============================
+Gibraltar
+---------
+163470 -> -300
+
+
+Indonesia (connect to Australia)
+================================
+Kalimantan - Sulawesi
+---------------------
+  242259 -> 50
+
+Sulawesi - Sufa
+---------------
+  243546 -> 50  
+
+Sufa - Buru
+-----------
+  278398 -> 50
+  278536 -> 50
+  278537 -> 50
+  278675 -> 50
+  278676 -> 50
+  278816 -> 50
+
+Buru - Cerom
+------------
+  278953 -> 50
+  278954 -> 50
+
+Cerom - Papua
+-------------
+  278382 -> 50
+  278243 -> 50
+  278244 -> 50
+
+
+Arabia (separate from Africa)
+=============================
+
+Bab el Mandeb
+-------------
+  187297 -> -100
+  187298 -> -100
+  187478 -> -100
+  187843 -> -100
+
+North America (connect to Greenland)
+===================================
+
+Greenland
+---------
+  106558 -> 50
+

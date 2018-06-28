@@ -1,0 +1,39 @@
+# POP INFO: Species name (Num substeps, sensing distance)
+CLASS SimplePredPop
+SPECIES 768 SPred
+SENSING 1
+
+BEGIN_PARAMS
+# for WeightedMoveRand
+WeightedMoveRandProb = 0.2
+
+# for ShareEvaluator
+ShareEvaluator_PreyMass_arrayname = PreyMasses
+ShareEvaluator_PreyMass_polyname  = Masses
+
+# for MassManager
+MM_minmass   = 0.2
+MM_maxmass   = 10.0
+MM_deltamass = -0.01
+
+# for Birther
+Birther_adultmass   = 1
+Birther_birthmass   = 0.5
+Birther_uncertainty = 0.1
+
+# for Hunting
+Hunting_preyspecies = SPrey
+Hunting_efficiency  = 0.08
+Hunting_usability   = 0.9
+
+# priorities
+#PRIO SingleEvaluator 0
+PRIO ShareEvaluator 0
+PRIO WeightedMoveRand 4
+PRIO Birther          1
+PRIO Hunting          2
+PRIO MassManager      3
+
+
+END_PARAMS
+

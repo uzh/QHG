@@ -1,0 +1,26 @@
+# POP INFO: Species name (Num substeps, sensing distance)
+CLASS  VegMoverPop
+SPECIES 1333 GrassLover
+SENSING 1
+
+BEGIN_PARAMS
+
+# for MoverPop
+MAX_MASS  = 5
+B_PROB_0  = 1.0
+D_PROB_0  = 0.2
+TURNOVER  = 0.05
+MOVE_THRESH = 0.01
+MOVE_PROB   = 0.99
+
+# for VegMoverPop
+FOOD_INFO = 0 0.8
+FOOD_INFO = 1 0.3
+FOOD_INFO = 2 0.1
+
+# priorities
+PRIO BIRTH 2
+PRIO DEATH 1
+PRIO MOVE  3
+
+END_PARAMS

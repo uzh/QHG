@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="2700"
+   height="1350"
+   sodipodi:docname="regionEurasiaP4.svg">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="1181"
+     id="namedview4"
+     showgrid="false"
+     inkscape:zoom="3.11"
+     inkscape:cx="141.03144"
+     inkscape:cy="1072.2356"
+     inkscape:window-x="1680"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <image
+     width="2700"
+     height="1350"
+     xlink:href="file:///home/jody/progs/QHG3/trunk/genes/altitudes_20k.png"
+     id="image10"
+     x="0"
+     y="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1292,408 1337,407 1411,352 1405,384 1414,390 1436,364 1455,376 1442,389 1439,399 1463,417 1471,397 1497,378 1511,406 1553,421 1603,421 1612,407 1561,350 1503,204 1613,138 1496,139 1451,164 1418,191 1388,202 1367,227 1306,229 1264,273 1283,301 1335,328 1330,341 1285,333 1268,348 1269,392 z"
+     id="West_Europe"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1790,143 1772,152 1613,138 1503,204 1561,351 1612,408 1696,405 1774,369 z"
+     id="East_Europe"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1688,585 1751,562 1764,550 1789,548 1809,501 1783,490 1774,476 1754,486 1716,460 1696,405 1612,408 1603,421 1597,439 1596,454 1614,480 1639,512 1654,538 1678,579 z"
+     id="Arabia"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1843,494 1905,424 1920,345 1775,367 1696,406 1716,460 1755,487 1774,477 1785,490 z"
+     id="West_Asia"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 2003,530 2048,529 2059,471 1906,424 1844,494 1888,526 z"
+     id="North_India"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1964,567 2003,529 1888,525 1929,626 1952,635 1970,631 z"
+     id="South_India"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 2052,271 2147,292 2158,89 2106,93 1943,120 1861,119 1790,143 1774,367 1920,345 z"
+     id="West_Siberia"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 2131,449 2146,292 2053,271 1918,345 1904,424 2058,471 z"
+     id="Central_Asia"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 2033,583 2052,640 2122,729 2210,753 2288,724 2290,699 2319,693 2331,656 2310,632 2298,565 2278,555 2277,525 2242,533 2246,580 2213,616 2183,607 2180,566 2150,531 2131,449 2058,471 2049,530 2054,557 z"
+     id="SouthEast_Asia"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 2178,866 2206,939 2242,949 2330,918 2372,950 2423,975 2442,1008 2467,1009 2472,969 2510,903 2505,853 2459,809 2438,773 2442,746 2513,773 2515,739 2502,699 2472,687 2460,711 2330,655 2319,693 2288,701 2288,725 2210,753 2261,771 2217,815 z"
+     id="Australia"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 2352,439 2413,421 2433,371 2456,349 2489,332 2484,323 2441,337 2434,268 2262,267 2146,291 2133,450 2151,534 2175,546 2238,512 2269,515 2323,472 2336,469 z"
+     id="China"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 2603,235 2700,217 2700,131 2677,150 2444,126 2415,116 2384,120 2330,135 2314,116 2158,89 2147,290 2260,266 2432,269 2483,239 2521,238 2507,259 2517,290 2488,322 2494,331 2536,296 2557,287 z"
+     id="East_Siberia1"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1335,407 1291,408 1256,458 1227,484 1217,508 1223,524 1434,547 1531,520 1633,504 1614,480 1597,454 1596,437 1578,435 1569,442 1523,425 1497,429 1493,439 1437,421 1438,405 1432,392 1374,394 z"
+     id="North_Africa"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1239,610 1297,655 1374,637 1410,652 1564,632 1533,518 1433,547 1224,524 1217,557 1228,606 z"
+     id="West_Africa"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1411,687 1450,760 1585,744 1562,630 1408,652 z"
+     id="Central_Africa"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1683,672 1724,642 1743,596 1766,581 1756,574 1688,584 1677,577 1654,538 1631,503 1533,520 1564,631 1585,745 1660,769 1649,711 z"
+     id="East_Africa"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1434,792 1437,825 1485,938 1524,942 1575,922 1629,850 1623,825 1655,810 1660,769 1584,744 1451,760 z"
+     id="South_Arfica"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 71,163 0,123 0,227 46,211 98,213 z"
+     id="East_Siberia2"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 114,151 70,161 99,214 47,213 108,256 9,281 8,297 115,279 181,266 239,232 309,243 326,147 175,133 z"
+     id="Alaska"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 410,375 457,439 500,417 588,408 600,162 551,159 511,163 493,158 399,137 325,147 310,242 416,323 z"
+     id="NorthWest_America"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 833,364 89,-33 50,-4 -37,-69 -55,-43 -29,10 -88,-32 -9,42 -36,14 -64,-19 -53,-68 -12,246 118.60772,47.71383 25.17685,33.07074 L 773,502 l 4,-34 -18,-4 -1,-19 z"
+     id="NorthEast_America"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccccccccccccccccc" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 409,96 -10,43 94,19 18,5 40,-3 50.01205,1 51.98795,70 111,-38 88,30 28,-7 65,-19 47,36 38,6 41,-45 143,-37 61,-103 -106,-9 -471,3 -144,18 z"
+     id="Arctic"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccccccccccccccccccc" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 513,517 675,583 699,543 706,514 746,518 795,544 868,547 877,529 804,520 804,505 773,501 733,488 707,454 586,408 501,415 457,439 z"
+     id="Mexico"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 737,669 733,733 817,823 912,847 989,903 998,868 1054,850 1104,741 1093,709 1003,677 954,619 926,620 886,583 826,581 765,627 762,650 z"
+     id="South_America_North"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 879,1092 863,1052 898,977 969,925 989,902 913,847 817,823 802,933 787,960 772,1051 779,1083 846,1113 z"
+     id="South_America_South"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 754,548 700,543 674,584 707,609 743,628 765,628 827,580 790,576 770,599 736,596 z"
+     id="Central_America"
+     inkscape:connector-curvature="0" />
+</svg>

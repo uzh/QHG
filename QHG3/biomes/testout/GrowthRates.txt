@@ -1,0 +1,4 @@
+# growth rates
+Grass: 0.611427
+Bush: 0.362280
+Tree: 2.456798

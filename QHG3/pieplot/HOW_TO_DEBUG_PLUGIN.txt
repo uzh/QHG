@@ -1,0 +1,89 @@
+A: print statements
+===================
+- use printf or std::cout
+
+
+B: visit debug outputs
+======================
+VisIt has debug output streams
+    debug1, debug2, debug3, debug4, debug5
+ 
+running VisIt with the -debug <Level> option, e.g. 
+    visit -debug 3
+will create debug files of the form <n>.<module>.<level>.vlog, e.g. 
+    A.engine_ser.1.vlog,  A.gui.3.vlog  
+  
+<level> specifies which debug stream wrote to the log file.
+<n> serves to keep apart various run (<n> is a 'A' for the first run, 'B' for the second etc).
+<module> is any of 'viewer', 'gui', 'mdserver', 'engine_ser', 'engine_par'
+
+A file with a particular level X contains the output of all debug streams
+    debug1, ... debugX
+
+
+C: attach gdb to any of visit's modules
+=======================================
+- start VisIt
+
+- find the process ID of the module you're interested in
+      $ ps ax | grep viewer
+         4066 pts/14   S+     0:00 /opt/visit/bin/../current/linux-x86_64/bin/python /opt/visit/bin/frontendlauncher.py /opt/visit/bin/visit -v 2.7 -viewer -geometry 1272x975+408+50 -borders 19,5,5,5 -shift 8,25 -preshift -3,-6 -defer -host aim-triops.uzh.ch -port 5600 -key 10f1b1751babf85b2d74
+         4076 pts/14   S+     0:01 /opt/visit/2.7.3/linux-x86_64/bin/viewer -geometry 1272x975+408+50 -borders 19,5,5,5 -shift 8,25 -preshift -3,-6 -defer -host 127.0.0.1 -port 5600 -key 10f1b1751babf85b2d74
+
+- attach gdb to the module (add the name of the executable and the process ID)
+      $ gdb /opt/visit/2.7.3/linux-x86_64/bin/viewer 4076
+
+To have debug information and line numbers etc 
+you have to do a workaround, because using 'make' seems to 
+compile everything optimized and/or without debug info.
+
+Workaround:
+    - find out in which directory your compiled file goes
+    - compile the files in question with '-g',
+      saving the output in the adequate directory
+    - 'touch' a unrelated file
+    - run 'make'
+
+Example: Debugging PieManager.cpp
+  find the appropriate directory
+  ----
+      $  find CMakeFiles -name "PieManager*"
+      CMakeFiles/EPiePlot_ser.dir/PieManager.cpp.o
+      CMakeFiles/VPiePlot.dir/PieManager.cpp.o
+      CMakeFiles/EPiePlot_par.dir/PieManager.cpp.o
+  ----
+  if you're interested what goes on in the viewer module
+  the directory woupd be 'CMakeFiles/VPiePlot.dir'.
+  Now compile your file
+  ----
+      $  g++ -g -c  -Wall PieManager.cpp 
+         -o CMakeFiles/VPiePlot.dir/PieManager.cpp.o 
+         -I ../common 
+         -I ../io 
+         -I /opt/visit/2.7.3/linux-x86_64/include/vtk/vtk-6.0/ 
+         -I /opt/visit/2.7.3/linux-x86_64/include/visit/common/state 
+         -I /opt/visit/2.7.3/linux-x86_64/include/visit/common/utility 
+         -I/opt/visit/2.7.3/linux-x86_64/include/visit/common/misc 
+         -fPIC
+  ----
+  You can find the required include directories by 
+     - run 'make' 
+     - find the location of a missing h-file
+     - add the corresponding directory to the 'make' command
+     - call 'make' again
+ 
+  Now we must link the plugin, but without recompiling this file.
+  Touch a unrelated file and run 'make'
+  ----
+      $ touch avtPiePlot.C
+      $ make
+  ----
+  This should rebuild theplugin with PieManager's debuginfo intact.
+
+D: running valgrind with visit
+==============================
+(http://visitusers.org/index.php?title=Valgrind)
+Here's how valgrind should be called with visit
+    visit -valgrind <extra arguments> <module>
+Example
+    $ visit -valgrind --leak-check=full --log-file=x1.vg viewer

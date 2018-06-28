@@ -1,0 +1,30 @@
+CLASS GeneticMoverPop
+SPECIES 1 Sapiens
+SENSING 1
+
+BEGIN_PARAMS
+
+WeightedMoveProb = 0.07
+
+AltPreference = -0.1 0 0.1 1 1500 100 2500 0 3000 -9999
+
+Verhulst_b0 = 0.03
+Verhulst_d0 = 0.001
+Verhulst_theta = 0.01
+Verhulst_K = 45
+
+Verhulst_b0 = 0.09
+Verhulst_d0     = 0.03
+Verhulst_theta = 0.03
+
+Genetics_genome_size   = 100
+Genetics_num_crossover = 1
+Genetics_mutation_rate = 0.1
+
+PRIO RandomPair         1
+PRIO Verhulst           2
+PRIO SingleEvaluator    3
+PRIO WeightedMove       4
+PRIO GetOld             5
+
+END_PARAMS

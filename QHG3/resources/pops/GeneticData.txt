@@ -1,0 +1,9 @@
+# Genetic data (genome size 5 [5 longs=160 nucleotides])
+# <lon> <lat>: <lifestate> <agentID> <birth time> <mass> <age> <mate index> <birthtime> <ancestorIDs>*
+8 47:1 1 0 30 40 -1   1  0 0  0 0 0 
+8 47:1 2 0 30 40 -1   2  0 0  0 0 0 
+8 47:1 3 0 30 40 -1   3  0 0  0 0 0 
+8 47:1 4 0 30 40 -1   4  0 0  0 0 0 
+8 47:1 5 0 30 40 -1   5  0 0  0 0 0 
+8 47:1 6 0 30 40 -1   6  0 0  0 0 0
+

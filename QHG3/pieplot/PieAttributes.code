@@ -1,0 +1,16 @@
+Function: ChangesRequireRecalculation
+Declaration: bool ChangesRequireRecalculation(const PieAttributes &obj);
+Definition:
+//--------------------------------------------------------------------
+// ChangesRequireRecalculation
+//   check if a attribute has changed which requires a recalculation.
+//   currently, only changes in fScale1 entail recalculation
+//
+bool
+PieAttributes::ChangesRequireRecalculation(const PieAttributes &obj)
+{
+    // dummy test to see if it works 
+        printf("obj (cur): scale1 %f (%f), scale2 %f (%f)\n", obj.fScale1, fScale1, obj.fScale2, fScale2);
+    return (fScale1 != obj.fScale1);
+}
+

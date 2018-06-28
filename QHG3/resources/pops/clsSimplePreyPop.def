@@ -1,0 +1,28 @@
+# POP INFO: Species name (Num substeps, sensing distance)
+CLASS SimplePreyPop
+SPECIES 767 SPrey
+SENSING 1
+
+BEGIN_PARAMS
+# for RandMove
+RandMoveProb = 0.4
+
+# for MassManager
+MM_minmass   = 0.1
+MM_maxmass   = 5.0
+MM_deltamass = 0.05
+
+# for Verhulst
+Verhulst_b0    = 0.007777777
+Verhulst_d0    = 0.001
+Verhulst_theta = 0.002
+Verhulst_K     = 6
+
+# priorities
+PRIO RandMove      1
+PRIO MassManager   0
+# Verhulst must happen *after* hunting
+PRIO Verhulst      4
+
+END_PARAMS
+

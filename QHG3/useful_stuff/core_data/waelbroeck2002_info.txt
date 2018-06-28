@@ -1,0 +1,23 @@
+
+---------------
+sea level data (waelbroeck) from here:
+
+ftp://ftp.ncdc.noaa.gov/pub/data/paleo/paleocean/relative_sea_level/waelbroeck2002-rsl-430k/waelbroeck2002.txt
+
+---------------
+sea level data (ganoppolski) from Timmermann:
+
+  sort -n sealevel_Ganopolski.dat > sealevel_GanopolskiR.dat
+
+---------------
+ice data (peltier) from here:
+
+ http://atmosp.physics.utoronto.ca/~peltier/datasets/Ice5G_1.2/ice5g_v1.2_26_0.nc.gz
+ http://atmosp.physics.utoronto.ca/~peltier/datasets/Ice5G_1.2/ice5g_v1.2_122_27.nc.gz
+
+---------------
+npp data from Timmermann
+  # shift coordinates [20.5,79.5] to [-179.5,179.5]
+  cdo sellonlatbox,-179.5,179.5,-89.5,89.5 mergeTOBIASOLI4_NPP_all_highres3.nc  tempfile
+  # set time values as kyrs b.p
+  cdo settaxis,-0407-01-01,00:00:00,1year   tempfile outfile timmermann.nc

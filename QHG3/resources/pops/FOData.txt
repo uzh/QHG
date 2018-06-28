@@ -1,0 +1,9 @@
+# CompMover data
+# <lon> <lat>: <lifestate> <agentID> <mass> <age> <mate index> <birthtime>
+# <lon> <lat>: <lifestate> <agentID> <mass> <age>
+38.74 9.03:  1 1 0 30 40 
+38.74 9.03:  1 2 0 30 40 
+38.74 9.03:  1 3 0 30 40
+38.74 9.03:  1 4 0 30 40
+38.74 9.03:  1 5 0 30 40
+38.74 9.03:  1 6 0 30 40

@@ -1,0 +1,36 @@
+# POP INFO: Species name (Num substeps, sensing distance)
+CLASS PDPredPop
+SPECIES 771 PDSuperPred
+SENSING 1
+
+BEGIN_PARAMS
+# for WeightedMoveRand
+WeightedMoveRandProb = 0.3
+
+# for ShareEvaluator
+ShareEvaluator_PreyMass_arrayname = PDSimplePred_Masses
+ShareEvaluator_PreyMass_polyname  = Masses
+
+# for MassManager
+MM_minmass   = 0.4
+MM_maxmass   = 10.0
+MM_deltamass = -0.001
+
+# for Birther
+Birther_adultmass   = 3
+Birther_birthmass   = 1
+Birther_uncertainty = 0.1
+
+# for Hunting
+PDHunting_relations = PDSuperPred|PDSimplePred:0.18:0.9
+
+# priorities
+PRIO IndexCollector   0
+PRIO ShareEvaluator   1
+PRIO WeightedMoveRand 5
+PRIO Birther          2
+PRIO PDHunting        3
+PRIO MassManager      4
+
+END_PARAMS
+

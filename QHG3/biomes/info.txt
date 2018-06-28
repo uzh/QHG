@@ -1,0 +1,106 @@
+HOLDRIDGE LIFE ZONES
+--------------------
+lholdag.img 
+  is the map of holdridge aggregated life zones (14 categories)
+lholdag.doc 
+  contains a table linking values to biome names 
+(from http://www.ngdc.noaa.gov/ecosys/cdroms/ged_iia/datasets/a06/lh.htm)
+(* this page doesn't exist anymore *)
+
+
+holdnorm.bil 
+  is a map of holdridge zones with 38 categories
+holdnorm.txt 
+  contains a table linking values to biome names 
+
+(from the zip file  http://www.grid.unep.ch/data/download/gnv005.zip
+ at the URL
+   http://www.grid.unep.ch/data/summary.php?dataid=GNV5&
+   category=biosphere&
+   dataurl=http://www.grid.unep.ch/data/download/gnv005.zip&
+   browsen=http://www.grid.unep.ch/data/download/gnv005-1.gif)
+
+holdridge qmaps:
+  qmh lholdag.img -a -180,179.6,0.5,-90,89.6,0.5:0 holdridge_14.qmap
+  qmh holdnorm.bil -a -180,179.6,0.5,-90,89.6,0.5:0 holdrige_38.qmap
+
+
+
+trans_LH2QHG.txt maps holdridge aggregated life zones (14 categories) to qhg biomes:
+  # translation of aggregated holdridge life zones to simple QHG
+  0       0  # Oceans                   -> Ocean
+  1       2  # Tundra                   -> Grassland
+  2       4  # Cold Parklands           -> Parkland
+  3       4  # Forest Tundra            -> Parkland
+  4       5  # Boreal Forest            -> Woodland
+  5       1  # Cool Desert              -> Desert 
+  6       2  # Steppe                   -> Grassland
+  7       5  # Temperate Forest         -> Woodland
+  8       1  # Hot Desert               -> Desert
+  9       3  # Chapparal                -> Shrubland
+ 10       5  # Warm Temperate Forest    -> Woodland
+ 11       5  # Tropical Semi-Arid       -> Woodland
+ 12       5  # Tropical Dry Forest      -> Woodland
+ 13       5  # Tropical Seasonal Forest -> Woodland
+ 14       5  # Tropical Rain Forest     -> Woodland
+
+trans_LH2QHG.txt maps holdridge aggregated life zones (38 categories) to qhg biomes:
+ #translation of holdridge life zones (38 categories) to qhg biomes
+  0       0  # Oceans                        -> Ocean
+  1       1  # Polar desert                  -> Desert
+  2       2  # Subpolar dry tundra           -> Grassland
+  3       2  # Subpolar moist tundra         -> Grassland
+  4       2  # Subpolar wet tundra           -> Grassland
+  5       2  # Subpolar rain tundra          -> Grassland
+  6       1  # Boreal desert                 -> Desert
+  7       3  # Boreal dry scrub              -> Shrubland
+  8       5  # Boreal moist forest           -> Woodland
+  9       5  # Boreal wet forest             -> Woodland
+ 10       5  # Boreal rain forest            -> Woodland
+ 11       1  # Cool temperate desert         -> Desert
+ 12       3  # Cool temperate desert scrub   -> Shrubland
+ 13       2  # Cool temperate steppe         -> Grassland
+ 14       5  # Cool temperate moist forest   -> Woodland
+ 15       5  # Cool temperate wet forest     -> Woodland
+ 16       5  # Cool temperate rain forest    -> Woodland
+ 17       1  # Warm temperate desert         -> Desert
+ 18       3  # Warm temperate desert scrub   -> Shrubland
+ 19       4  # Warm temperate thorn scrub    -> Shrubland 
+ 20       5  # Warm temperate dry forest     -> Woodland
+ 21       5  # Warm temperate moist forest   -> Woodland
+ 22       5  # Warm temperate wet forest     -> Woodland
+ 23       5  # Warm temperate rain forest    -> Woodland
+ 24       1  # Subtropical desert            -> Desert
+ 25       3  # Subtropical desert scrub      -> Shrubland
+ 26       4  # Subtropical thorn woodland    -> Parkland
+ 27       5  # Subtropical dry forest        -> Woodland
+ 28       5  # Subtropical moist forest      -> Woodland
+ 29       5  # Subtropical wet forest        -> Woodland
+ 30       5  # Subtropical rain forest       -> Woodland
+ 31       1  # Tropical desert               -> Desert
+ 32       3  # Tropical desert scrub         -> Shrubland
+ 33       4  # Tropical thorn woodland       -> Parkland
+ 34       5  # Tropical very dry forest      -> Woodland
+ 35       5  # Tropical dry forest           -> Woodland
+ 36       5  # Tropical moist forest         -> Woodland
+ 37       5  # Tropical wet forest           -> Woodland
+ 38       5  # Tropical rain forest          -> Woodland
+
+CLIMATE DATA
+------------
+cai_temp2.clim 
+  is the UDEL fileof annual mean temperatures
+  (from http://climate.geog.udel.edu/~climate/html_pages/download.html)
+
+cai_prec2.clim 
+  is the UDEL fileof annual precipitation
+  (from http://climate.geog.udel.edu/~climate/html_pages/download.html)
+
+qhg_leg.doc consists of the following lines:
+  max. value  :   14
+  category  0 :   0 Ocean
+  category  1 :   1 Desert
+  category  2 :   2 Grassland
+  category  3 :   3 Shrubland
+  category  4 :   4 Parkland
+  category  5 :   5 Woodland

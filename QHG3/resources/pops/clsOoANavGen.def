@@ -1,0 +1,75 @@
+CLASS OoANavGenPop
+SPECIES 119 Sapiens_ooa
+SENSING 1
+
+BEGIN_PARAMS
+
+#-- for WeightedMove
+WeightedMoveProb = 0.2
+
+#-- for Navigate
+NavigateDecay     = -0.001
+NavigateDist0     = 150.0
+NavigateProb0     = 0.1
+NavigateMinDens   = 0
+
+#-- for SingleEvaluator Alt
+#AltCapPref = -0.1 0 0.1 1 1500 1.20 0 3000 -9999
+AltCapPref = -0.1 0 0.1 0.01 1500 1.0 2000 1 3000 -9999 
+
+#-- for SingleEvaluator NPP
+NPPPref =  1 0 32 1 1000 1 10000 1
+
+
+#-- for MultiEvaluator Alt+NPP
+AltWeight = 0.2
+NPPWeight = 0.8
+
+
+#-- for VerhulstVarK
+Verhulst_b0 = 0.2
+Verhulst_d0 = 0.001
+Verhulst_theta = 0.01
+
+
+#-- for NPPCapacity
+NPPCap_K_min                = 6.0
+NPPCap_NPP_max              = 1.2
+NPPCap_NPP_min              = 0.08
+NPPCap_coastal_factor       = 0.2
+NPPCap_coastal_max_latitude = 66.0
+NPPCap_coastal_min_latitude = 50.0
+NPPCap_max_capacity         = 60.0
+NPPCap_water_factor         = 0.5
+
+#-- for Fertility
+Fertility_interbirth       = 2.0
+Fertility_max_age          = 50.0
+Fertility_min_age          = 15.0
+
+
+#-- for GeneticPop
+Genetics_bits_per_nuc      = 1
+Genetics_create_new_genome = 1
+Genetics_genome_size       = 8192
+Genetics_initial_muts      = variants:3
+Genetics_mutation_rate     =  2.00000000e-06
+Genetics_num_crossover     = -1
+
+#-- for old age death
+OAD_max_age                = 60.0
+OAD_uncertainty            = 0.1
+
+
+#-- priorities
+PRIO NPPCapacity        1
+PRIO Fertility          2
+PRIO RandomPair         3
+PRIO MultiEvaluator     5
+PRIO VerhulstVarK       6
+PRIO WeightedMove       7
+PRIO Navigate           8
+PRIO GetOld             9
+PRIO OldAgeDeath        10
+
+END_PARAMS

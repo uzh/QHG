@@ -1,0 +1,63 @@
+CLASS OoAPop
+SPECIES 112 Sapiens_ooa
+SENSING 1
+
+BEGIN_PARAMS
+
+#-- for WeightedMove
+WeightedMoveProb = 0.09
+
+
+#-- for SingleEvaluator Alt
+AltCapPref = -0.1 0 0.1 1 1500 1.20 0 3000 -9999
+
+
+#-- for SingleEvaluator NPP
+NPPPref =  10  0 1000 1 10000 1
+
+
+#-- for MultiEvaluator Alt+NPP
+AltWeight = 0.2
+NPPWeight = 0.8
+
+
+#-- for VerhulstVarK
+Verhulst_b0 = 0.04
+Verhulst_d0 = 0.001
+Verhulst_theta = 0.01
+
+
+#-- for NPPCapacity
+#-- capacity must be scaled to cell size
+#-- additive: 0:grass, 1:Bush, 7:Tree
+NPPCap_max_capacity     = 120
+NPPCap_veg_selection    = 0.45 0.45 0.1
+NPPCap_water_factor     = 1
+
+#-- for Fertility
+Fertility_age          = 15
+Fertility_interbirth   = 2
+
+
+#-- for GeneticPop
+Genetics_genome_size   = 8192
+Genetics_mutation_rate = 0.0001
+Genetics_num_crossover = -1
+
+#-- for ConfinedMove
+ConfinedMoveX   = 35
+ConfinedMoveY   = 5
+ConfinedMoveR   = 500
+
+#-- priorities
+PRIO NPPCapacity        1
+PRIO Fertility          2
+PRIO RandomPair         3
+#PRIO SingleEvaluator    4
+PRIO MultiEvaluator     5
+PRIO VerhulstVarK       6
+PRIO WeightedMove       7
+PRIO ConfinedMove       8
+PRIO GetOld             8
+
+END_PARAMS

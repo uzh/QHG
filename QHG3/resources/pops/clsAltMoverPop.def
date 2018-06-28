@@ -1,0 +1,22 @@
+CLASS AncAltMoverPop
+SPECIES 1 Sapiens
+SENSING 1
+
+BEGIN_PARAMS
+
+WeightedMoveProb = 0.03
+
+AltPreference = -0.1 0 0.1 1 1500 1 2500 0
+
+Verhulst_b0 = 0.03
+Verhulst_d0 = 0.001
+Verhulst_theta = 0.01
+Verhulst_K = 60
+
+PRIO RandomPair         1
+PRIO Verhulst           2
+PRIO SingleEvaluator    3
+PRIO WeightedMove       4
+PRIO GetOld             5
+
+END_PARAMS

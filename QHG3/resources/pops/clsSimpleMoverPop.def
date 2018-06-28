@@ -1,0 +1,33 @@
+# POP INFO: Species name (Num substeps, sensing distance)
+CLASS SimpleOoAPop
+SPECIES 112 Sapiens_ooa
+SENSING 1
+
+BEGIN_PARAMS
+
+RandMoveProb = 0.8
+
+#-- for Verhulst
+Verhulst_b0 = 0.04
+Verhulst_d0 = 0.001
+Verhulst_theta = 0.01
+Verhulst_K = 10
+
+#-- for Fertility
+Fertility_min_age          = 15
+Fertility_max_age          = 50
+Fertility_interbirth   = 2
+
+#-- for OldAgeDeath
+OAD_max_age = 60
+OAD_uncertainty = 0.1
+
+#-- priorities
+PRIO Fertility          2
+PRIO RandomPair       3
+PRIO Verhulst       6
+PRIO RandMove       7
+PRIO GetOld             8
+PRIO OldAgeDeath 9
+
+END_PARAMS

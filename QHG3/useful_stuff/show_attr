@@ -1,0 +1,3 @@
+#!/bin/sh
+h=`echo $0 | gawk -F/ '{ print $NF }'`
+${0/$h/pop_attrs.py} show $*

@@ -1,0 +1,64 @@
+#ifndef __IDS_H__
+#define __IDS_H__
+
+#include <map>
+#include <string>
+
+#include "types.h"
+
+#define GET_SPC_SUFF(x) ((x) & 0xffff)
+
+// typedef std::map<int, std::string> MAP_INT_STRING;
+
+// static MAP_INT_STRING g_mapSpeciesNames;
+
+const spcid SPC_ALL  = 0xffff;
+const spcid SPC_NONE = 0xfffe;
+const spcid CLASS_NONE = 0xfffe;
+
+//-- vegetation: 0 - 99
+// must start with 0, no "holes"
+const spcid CLASS_VEG = 0;
+const spcid SPC_GRASS = 0;
+const spcid SPC_BUSH  = 1;
+const spcid SPC_TREE  = 2;
+const spcid MAX_VEG = 99;
+const unsigned int NUM_VEG = 3;
+
+// CONFIGURE IDS: DO NOT DELETE THIS COMMENT LINE
+
+
+// if you add new SEL_XXX constants:
+// --> update SetValue
+const int SEL_NONE  = 0xfffe;
+
+typedef struct {
+    const char *pName;
+    int   iVal;
+} NameIVal;
+
+
+static const NameIVal s_aClasses[] = {
+    {"Vegetation", CLASS_VEG},
+// CONFIGURE SPECIES: DO NOT DELETE THIS COMMENT LINE
+};
+
+static const NameIVal s_aSpecies2[] = {
+    {"Grass",  SPC_GRASS},
+    {"Bush",   SPC_BUSH},
+    {"Tree",   SPC_TREE},
+};
+
+
+
+
+
+spcid spcValue(const char *pSpcName);
+const char *spcName(spcid i);
+spcid clsValue(const char *pSpcName);
+const char *clsName(spcid i);
+
+
+static const char REVISION[] = "@@@REV@@@";
+#endif
+

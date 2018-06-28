@@ -1,0 +1,15 @@
+CentralEurope[Central Europe]   10      49      100    30
+NAfrica[North Africa]           23      27      100    30
+EAfrica[East Africa]            36       4      100    30
+SAfrica[South Africa]           23     -28      100    30
+India[]                         77      17      100    30
+Australia[]                    136     -23      100    30
+China[]                        125      56      100    30
+Patagonia[]                    -70     -54      100    30
+Mexico[]                       -90      17      100    30
+NEAmerica[North East America]  -80      39      100    30
+NWAmerica[North West America] -118      40      100    30
+Greenland[]                    -45      66      100    30
+Siberia[]                       97      66      100    30
+Indonesia[]                    110      -2      100    30
+
